@@ -12,12 +12,12 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :cost_price_pyg
       t.string :sales_price_pyg
       t.string :profit_per_unit
-      t.number :order
-      t.number :total_revenue
-      t.number :profit
-      t.boolean :confirm
-      t.number :total_cost_price_pyg
-
+      t.integer :order
+      t.integer :total_revenue
+      t.integer :profit
+      t.integer :confirm
+      t.integer :total_cost_price_pyg
+      t.references :invoice
       t.timestamps
     end
   end
