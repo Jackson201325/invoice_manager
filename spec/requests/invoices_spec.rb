@@ -62,7 +62,9 @@ RSpec.describe 'Invoice API', type: :request do
     context 'when the request is valid' do
       before { post '/invoices', params: valid_attributes }
 
-      it 'creates a todo' do
+      it 'creates a invoice' do
+        puts valid_attributes
+        puts json['total_spend']
         expect(json['total_spend']).to eq(1_500_000)
       end
 
@@ -80,7 +82,7 @@ RSpec.describe 'Invoice API', type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match(/Validation failed: Created by can't be blank/)
+          .to match(/Validation failed: Total spend Must be a number/)
       end
     end
   end
