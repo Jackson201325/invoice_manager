@@ -1,3 +1,8 @@
 class Invoice < ApplicationRecord
-  belongs_to :item
+
+  # Model association
+  has_many :items, dependent: :destroy
+
+  # Validations
+
 end
