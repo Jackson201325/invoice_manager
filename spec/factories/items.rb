@@ -14,7 +14,7 @@ FactoryBot.define do
     order { Faker::Number.between(from: 5, to: 50) }
     total_revenue { sales_price_pyg * order }
     profit { profit_per_unit * order }
-    invoice { nil }
+    invoice_id  nil
     total_cost_price_pyg { cost_price_usd * 6400 * order }
     confirm { false }
   end
