@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.0'
+  # gem "factory_girl_rails", "~> 4.0"
+
   gem 'faker'
   gem 'shoulda-matchers', '~> 3.1'
 end
