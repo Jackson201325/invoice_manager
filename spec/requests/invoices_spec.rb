@@ -63,8 +63,8 @@ RSpec.describe 'Invoice API', type: :request do
       before { post '/invoices', params: valid_attributes }
 
       it 'creates a invoice' do
-        puts valid_attributes
-        puts json['total_spend']
+        # puts valid_attributes
+        # puts json['total_spend']
         expect(json['total_spend']).to eq(1_500_000)
       end
 
