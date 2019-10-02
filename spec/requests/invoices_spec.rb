@@ -1,16 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe 'Invoice API', type: :request do
+  let(:user) { create(:user) }
   # initialize test data
   let!(:invoices) do
-    create_list(:invoice, 10)
+    create_list(:invoice, 10, created_by: user.id)
   end
   let(:invoice_id) { invoices.first.id }
+  let(:headers) { valid_headers }
 
   # Test suite for GET /invoices
   describe 'GET /invoices' do
     # make HTTP get request before each example
-    before { get '/invoices' }
+    before { get '/invoices', params: {}, headers: headers }
 
     it 'returns invoices' do
       # Note `json` is a custom helper to parse JSON responses
@@ -25,7 +27,7 @@ RSpec.describe 'Invoice API', type: :request do
 
   # Test suite for GET /invoices/:id
   describe 'GET /invoices/:id' do
-    before { get "/invoices/#{invoice_id}" }
+    before { get "/invoices/#{invoice_id}", params: {}, headers: headers }
 
     context 'when the record exists' do
       it 'returns the todo' do
@@ -56,15 +58,14 @@ RSpec.describe 'Invoice API', type: :request do
     # valid payload
     let(:valid_attributes) do
       { total_spend: 1_500_000,
-        total_net_sales: 2_500_000 }
+        total_net_sales: 2_500_000,
+        created_by: user.id.to_s }.to_json
     end
 
     context 'when the request is valid' do
-      before { post '/invoices', params: valid_attributes }
+      before { post '/invoices', params: valid_attributes, headers: headers }
 
       it 'creates a invoice' do
-        puts valid_attributes
-        puts json['total_spend']
         expect(json['total_spend']).to eq(1_500_000)
       end
 
@@ -74,7 +75,7 @@ RSpec.describe 'Invoice API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/invoices', params: { total_spend: 'Foobar' } }
+      before { post '/invoices', params: { total_spend: 'Foobar' }.to_json, headers:headers }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -91,11 +92,11 @@ RSpec.describe 'Invoice API', type: :request do
   describe 'PUT /invoices/:id' do
     let(:valid_attributes) do
       { total_spend: 1_500_000,
-        total_net_sales: 2_500_000 }
+        total_net_sales: 2_500_000 }.to_json
     end
 
     context 'when the record exists' do
-      before { put "/invoices/#{invoice_id}", params: valid_attributes }
+      before { put "/invoices/#{invoice_id}", params: valid_attributes, headers:headers }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -109,7 +110,7 @@ RSpec.describe 'Invoice API', type: :request do
 
   # Test suite for DELETE /invoices/:id
   describe 'DELETE /invoices/:id' do
-    before { delete "/invoices/#{invoice_id}" }
+    before { delete "/invoices/#{invoice_id}", params: {}, headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)

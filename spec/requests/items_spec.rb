@@ -3,14 +3,16 @@ require 'rails_helper'
 
 RSpec.describe 'Items API' do
   # Initialize the test data
-  let!(:invoice) { create(:invoice) }
+  let(:user) { create(:user) }
+  let!(:invoice) { create(:invoice, created_by: user.id) }
   let!(:items) { create_list(:item, 20, invoice_id: invoice.id) }
   let(:invoice_id) { invoice.id }
   let(:id) { items.first.id }
+  let(:headers) { valid_headers }
 
   # Test suite for GET /invoices/:invoice_id/items
   describe 'GET /invoices/:invoice_id/items' do
-    before { get "/invoices/#{invoice_id}/items" }
+    before { get "/invoices/#{invoice_id}/items", params: {}, headers: headers  }
 
     context 'when invoice exists' do
       it 'returns status code 200' do
@@ -37,7 +39,7 @@ RSpec.describe 'Items API' do
 
   # Test suite for GET /invoices/:invoice_id/items/:id
   describe 'GET /invoices/:invoice_id/items/:id' do
-    before { get "/invoices/#{invoice_id}/items/#{id}" }
+    before { get "/invoices/#{invoice_id}/items/#{id}", params: {}, headers: headers }
 
     context 'when invoice item exists' do
       it 'returns status code 200' do
@@ -67,11 +69,11 @@ RSpec.describe 'Items API' do
     let(:valid_attributes) do
       { name: 'iPhone 11', description: 'Very expensive',
         company: 'Apple', url: 'www.apple.com', cost_price_usd: 1000,
-        order: 4 }
+        order: 4 }.to_json
     end
 
     context 'when request attributes are valid' do
-      before { post "/invoices/#{invoice_id}/items", params: valid_attributes }
+      before { post "/invoices/#{invoice_id}/items", params: valid_attributes, headers:headers }
 
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
@@ -79,7 +81,7 @@ RSpec.describe 'Items API' do
     end
 
     context 'when an invalid request' do
-      before { post "/invoices/#{invoice_id}/items", params: {} }
+      before { post "/invoices/#{invoice_id}/items", params: {}, headers:headers }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -96,10 +98,10 @@ RSpec.describe 'Items API' do
     let(:valid_attributes) do
       { name: 'iPhone 11', description: 'Very expensive',
         company: 'Apple', url: 'www.apple.com', cost_price_usd: 1000,
-        order: 4 }
+        order: 4 }.to_json
     end
 
-    before { put "/invoices/#{invoice_id}/items/#{id}", params: valid_attributes }
+    before { put "/invoices/#{invoice_id}/items/#{id}", params: valid_attributes, headers:headers }
 
     context 'when item exists' do
       it 'returns status code 204' do
@@ -127,7 +129,7 @@ RSpec.describe 'Items API' do
 
   # Test suite for DELETE /invoices/:id
   describe 'DELETE /invoices/:id' do
-    before { delete "/invoices/#{invoice_id}/items/#{id}" }
+    before { delete "/invoices/#{invoice_id}/items/#{id}", params: {}, headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
