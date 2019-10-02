@@ -3,7 +3,7 @@ class InvoicesController < ApplicationController
 
   # GET /invoices
   def index
-    @invoices = Invoice.all
+    @invoices = current_user.invoices
     json_response(@invoices)
   end
 
@@ -14,8 +14,7 @@ class InvoicesController < ApplicationController
     # ActiveRecord::RecordInvalid. This way, we can avoid deep nested if
     # statements in the controller. Thus, we rescue from this exception in the
     # ExceptionHandler module.
-    @invoice = Invoice.create!(invoice_params)
-    puts invoice_params
+    @invoice = current_user.invoices.create!(invoice_params)
     json_response(@invoice, :created)
   end
 
