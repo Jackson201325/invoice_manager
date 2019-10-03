@@ -1,4 +1,6 @@
-class ItemsController < ApplicationController
+module V1
+
+  class ItemsController < ApplicationController
   before_action :set_invoice
   before_action :set_invoice_item, only: %i[show update destroy]
 
@@ -43,4 +45,6 @@ class ItemsController < ApplicationController
   def set_invoice_item
     @item = @invoice.items.find_by!(id: params[:id]) if @invoice
   end
+end
+
 end

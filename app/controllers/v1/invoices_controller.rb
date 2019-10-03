@@ -1,4 +1,5 @@
-class InvoicesController < ApplicationController
+module V1
+  class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[show update destroy]
 
   # GET /invoices
@@ -45,4 +46,5 @@ class InvoicesController < ApplicationController
   def set_invoice
     @invoice = Invoice.find(params[:id])
   end
+end
 end
