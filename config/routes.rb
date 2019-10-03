@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     end
   end
 
+  scope module: :v2, constraints: ApiVersion.new('v2') do
+    resources :invoices, only: :index
+  end
+
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'

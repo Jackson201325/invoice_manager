@@ -4,6 +4,7 @@ module V1
 
   # GET /invoices
   def index
+    puts 'hello'
     @invoices = current_user.invoices
     json_response(@invoices)
   end
