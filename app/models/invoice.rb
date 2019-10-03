@@ -1,6 +1,7 @@
 class Invoice < ApplicationRecord
   before_update { calculate_profit }
   before_create { calculate_profit }
+
   # Model association
   has_many :items, dependent: :destroy
   # Validations
@@ -14,10 +15,6 @@ class Invoice < ApplicationRecord
                            allow_blank: true
 
   def calculate_profit
-    if total_net_sales? do
-      puts 'ehllo'
-      return self.total_profit = total_spend - total_net_sales
-    end
-    end
+    self.total_profit = total_net_sales - total_spend unless total_net_sales.nil?
   end
 end

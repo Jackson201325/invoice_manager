@@ -13,49 +13,49 @@
 ActiveRecord::Schema.define(version: 2019_09_29_224125) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "invoices", force: :cascade do |t|
-    t.integer "total_spend"
-    t.integer "total_net_sales"
-    t.integer "total_profit"
-    t.bigint "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "created_by"
-    t.index ["item_id"], name: "index_invoices_on_item_id"
+  create_table 'invoices', force: :cascade do |t|
+    t.integer 'total_spend'
+    t.integer 'total_net_sales'
+    t.integer 'total_profit'
+    t.bigint 'item_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'created_by'
+    t.index ['item_id'], name: 'index_invoices_on_item_id'
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "model"
-    t.text "description"
-    t.text "color"
-    t.string "company"
-    t.string "year"
-    t.string "url"
-    t.string "cost_price_usd"
-    t.string "cost_price_pyg"
-    t.string "sales_price_pyg"
-    t.string "profit_per_unit"
-    t.integer "order"
-    t.integer "total_revenue"
-    t.integer "profit"
-    t.boolean "confirm"
-    t.integer "total_cost_price_pyg"
-    t.bigint "invoice_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["invoice_id"], name: "index_items_on_invoice_id"
+  create_table 'items', force: :cascade do |t|
+    t.string 'name'
+    t.string 'model'
+    t.text 'description'
+    t.text 'color'
+    t.string 'company'
+    t.string 'year'
+    t.string 'url'
+    t.string 'cost_price_usd'
+    t.string 'cost_price_pyg'
+    t.string 'sales_price_pyg'
+    t.string 'profit_per_unit'
+    t.integer 'order'
+    t.integer 'total_revenue'
+    t.integer 'profit'
+    t.boolean 'confirm'
+    t.integer 'total_cost_price_pyg'
+    t.bigint 'invoice_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['invoice_id'], name: 'index_items_on_invoice_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.string 'password_digest'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "invoices", "items"
+  add_foreign_key 'invoices', 'items'
 end
