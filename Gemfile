@@ -16,6 +16,7 @@ gem 'puma', '~> 3.11'
 # Use ActiveModel has_secure_password
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faker'
 gem 'jwt'
 gem 'will_paginate', '~> 3.1.0'
 # Use ActiveStorage variant
@@ -29,7 +30,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
-#
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.0'

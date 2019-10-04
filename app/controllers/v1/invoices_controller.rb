@@ -4,8 +4,7 @@ module V1
 
   # GET /invoices
   def index
-    puts 'hello'
-    @invoices = current_user.invoices
+    @invoices = current_user.invoices.paginate(page: params[:page], per_page: 20)
     json_response(@invoices)
   end
 

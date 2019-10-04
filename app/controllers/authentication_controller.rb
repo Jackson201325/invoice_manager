@@ -8,6 +8,7 @@ class AuthenticationController < ApplicationController
     json_response(auth_token: auth_token)
   end
 
+
   private
 
   def auth_params
