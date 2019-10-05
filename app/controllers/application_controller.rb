@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  # Using cookies
+  # include ::ActionController::Cookies
   include Response
   include ExceptionHandler
 

@@ -41,5 +41,8 @@ module InvoiceManagement
     #     resource '*', headers: :any, methods: %i[get post options]
     #   end
     # end
+    #
+    # Using cookies
+    # config.middleware.use ActionDispatch::Cookies
   end
 end
