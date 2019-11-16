@@ -12,7 +12,6 @@ class Message
     end
   
     def self.missing_token
-
       'Missing token lol'
     end
   

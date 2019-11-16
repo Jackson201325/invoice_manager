@@ -8,15 +8,13 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :company
       t.string :year
       t.string :url
-      t.string :cost_price_usd
-      t.string :cost_price_pyg
-      t.string :sales_price_pyg
-      t.string :profit_per_unit
+      t.string :cost_price
+      t.string :sales_price
       t.integer :order
       t.integer :total_revenue
+      t.integer :total_cost
       t.integer :profit
       t.integer :confirm
-      t.integer :total_cost_price_pyg
       t.references :invoice
       t.timestamps
     end

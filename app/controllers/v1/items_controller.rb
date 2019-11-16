@@ -35,7 +35,7 @@ module V1
   private
 
   def item_params
-    params.permit(:name, :description, :company, :url, :cost_price_usd, :order)
+    params.permit(:name, :description, :company, :url, :cost_price, :order)
   end
 
   def set_invoice

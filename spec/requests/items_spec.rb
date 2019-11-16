@@ -68,7 +68,7 @@ RSpec.describe 'Items API' do
   describe 'POST /invoices/:invoice_id/items' do
     let(:valid_attributes) do
       { name: 'iPhone 11', description: 'Very expensive',
-        company: 'Apple', url: 'www.apple.com', cost_price_usd: 1000,
+        company: 'Apple', url: 'www.apple.com', cost_price: 1000,
         order: 4 }.to_json
     end
 
@@ -97,7 +97,7 @@ RSpec.describe 'Items API' do
   describe 'PUT /invoices/:invoice_id/items/:id' do
     let(:valid_attributes) do
       { name: 'iPhone 11', description: 'Very expensive',
-        company: 'Apple', url: 'www.apple.com', cost_price_usd: 1000,
+        company: 'Apple', url: 'www.apple.com', sales_price: 1000,
         order: 4 }.to_json
     end
 
