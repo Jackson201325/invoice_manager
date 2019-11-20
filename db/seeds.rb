@@ -19,14 +19,14 @@ user2 = User.create!(
   password_confirmation: '123123',
   name: 'Jazmin'
 )
-4.times do
+rand(1..10).times do
   invoice = Invoice.create!(
     total_spend: 0,
     total_net_sales: 0,
     created_by: user.id,
     total_profit: 0
   )
-  38.times do
+  rand(10..40).times do
     invoice.items.create!(
       name: Faker::Appliance.equipment,
       model: Faker::Device.model_name,
@@ -43,14 +43,14 @@ user2 = User.create!(
   end
 end
 
-4.times do
+rand(1..10).times do
   invoice = Invoice.create!(
     total_spend: 0,
     total_net_sales: 0,
     created_by: user2.id,
     total_profit: 0
   )
-  38.times do
+  rand(10..40).times do
     invoice.items.create!(
       name: Faker::Appliance.equipment,
       model: Faker::Device.model_name,
