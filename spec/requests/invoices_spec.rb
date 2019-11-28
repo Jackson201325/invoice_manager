@@ -4,7 +4,7 @@ RSpec.describe 'Invoice API', type: :request do
   let(:user) { create(:user) }
   # initialize test data
   let!(:invoices) do
-    create_list(:invoice, 10, created_by: user.id)
+    create_list(:invoice, 9, created_by: user.id)
   end
   let(:invoice_id) { invoices.first.id }
   let(:headers) { valid_headers }
@@ -30,7 +30,7 @@ RSpec.describe 'Invoice API', type: :request do
     before { get "/invoices/#{invoice_id}", params: {}, headers: headers }
 
     context 'when the record exists' do
-      it 'returns the todo' do
+      it 'returns the item' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(invoice_id)
       end

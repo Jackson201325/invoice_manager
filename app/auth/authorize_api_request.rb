@@ -23,7 +23,7 @@ class AuthorizeApiRequest
     # raise custom error
     raise(
       ExceptionHandler::InvalidToken,
-      ("#{Message.invalid_token} #{e.message}")
+      ("#{Message.invalid_token} c #{e.message}")
     )
   end
 
