@@ -22,13 +22,13 @@ module V1
 
     # PUT /invoices/:invoice_id/items/:id
     def update
-      @item.update(item_params)
+      @invoice.items.update(item_params)
       head :no_content
     end
 
     # DELETE /invoices/:todo_id/items/:id
     def destroy
-      @item.destroy
+      @invoice.items.destroy
       head :no_content
     end
 
